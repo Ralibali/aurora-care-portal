@@ -17,9 +17,9 @@ const description =
   "Boka en kostnadsfri genomgång av din WordPress-sajt. Vi återkommer med ett konkret förslag på underhållsnivå och pris.";
 
 export const Route = createFileRoute("/kontakt")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    plan: typeof search["plan"] === "string" ? (search["plan"] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { plan?: string } =>
+    typeof search["plan"] === "string" ? { plan: search["plan"] as string } : {},
+
   head: () => ({
     meta: [
       { title },

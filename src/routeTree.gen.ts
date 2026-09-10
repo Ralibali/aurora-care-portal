@@ -18,6 +18,10 @@ import { Route as TjansterRouteImport } from './routes/tjanster'
 import { Route as VanligaFragorRouteImport } from './routes/vanliga-fragor'
 import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
 import { Route as AuthenticatedPortalRouteRouteImport } from './routes/_authenticated/portal/route'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminKunderRouteImport } from './routes/_authenticated/admin/kunder'
+import { Route as AuthenticatedAdminSajterIndexRouteImport } from './routes/_authenticated/admin/sajter/index'
+import { Route as AuthenticatedAdminSajterSiteIdRouteImport } from './routes/_authenticated/admin/sajter/$siteId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +68,29 @@ const AuthenticatedPortalRouteRoute =
     path: '/portal',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRouteRoute,
+} as any)
+const AuthenticatedAdminKunderRoute =
+  AuthenticatedAdminKunderRouteImport.update({
+    id: '/kunder',
+    path: '/kunder',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminSajterIndexRoute =
+  AuthenticatedAdminSajterIndexRouteImport.update({
+    id: '/sajter/',
+    path: '/sajter/',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminSajterSiteIdRoute =
+  AuthenticatedAdminSajterSiteIdRouteImport.update({
+    id: '/sajter/$siteId',
+    path: '/sajter/$siteId',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -72,8 +99,12 @@ export interface FileRoutesByFullPath {
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
-  '/admin': typeof AuthenticatedAdminRouteRoute
+  '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/portal': typeof AuthenticatedPortalRouteRoute
+  '/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
+  '/admin/sajter/': typeof AuthenticatedAdminSajterIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -82,8 +113,11 @@ export interface FileRoutesByTo {
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
-  '/admin': typeof AuthenticatedAdminRouteRoute
   '/portal': typeof AuthenticatedPortalRouteRoute
+  '/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
+  '/admin/sajter': typeof AuthenticatedAdminSajterIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,8 +128,12 @@ export interface FileRoutesById {
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
-  '/_authenticated/admin': typeof AuthenticatedAdminRouteRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/portal': typeof AuthenticatedPortalRouteRoute
+  '/_authenticated/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
+  '/_authenticated/admin/sajter/': typeof AuthenticatedAdminSajterIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -108,6 +146,10 @@ export interface FileRouteTypes {
     | '/vanliga-fragor'
     | '/admin'
     | '/portal'
+    | '/admin/kunder'
+    | '/admin/'
+    | '/admin/sajter/$siteId'
+    | '/admin/sajter/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -116,8 +158,11 @@ export interface FileRouteTypes {
     | '/priser'
     | '/tjanster'
     | '/vanliga-fragor'
-    | '/admin'
     | '/portal'
+    | '/admin/kunder'
+    | '/admin'
+    | '/admin/sajter/$siteId'
+    | '/admin/sajter'
   id:
     | '__root__'
     | '/'
@@ -129,6 +174,10 @@ export interface FileRouteTypes {
     | '/vanliga-fragor'
     | '/_authenticated/admin'
     | '/_authenticated/portal'
+    | '/_authenticated/admin/kunder'
+    | '/_authenticated/admin/'
+    | '/_authenticated/admin/sajter/$siteId'
+    | '/_authenticated/admin/sajter/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -206,16 +255,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortalRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/kunder': {
+      id: '/_authenticated/admin/kunder'
+      path: '/kunder'
+      fullPath: '/admin/kunder'
+      preLoaderRoute: typeof AuthenticatedAdminKunderRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/sajter/': {
+      id: '/_authenticated/admin/sajter/'
+      path: '/sajter'
+      fullPath: '/admin/sajter/'
+      preLoaderRoute: typeof AuthenticatedAdminSajterIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/sajter/$siteId': {
+      id: '/_authenticated/admin/sajter/$siteId'
+      path: '/sajter/$siteId'
+      fullPath: '/admin/sajter/$siteId'
+      preLoaderRoute: typeof AuthenticatedAdminSajterSiteIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminKunderRoute: typeof AuthenticatedAdminKunderRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminSajterSiteIdRoute: typeof AuthenticatedAdminSajterSiteIdRoute
+  AuthenticatedAdminSajterIndexRoute: typeof AuthenticatedAdminSajterIndexRoute
+}
+
+const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
+  {
+    AuthenticatedAdminKunderRoute: AuthenticatedAdminKunderRoute,
+    AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+    AuthenticatedAdminSajterSiteIdRoute: AuthenticatedAdminSajterSiteIdRoute,
+    AuthenticatedAdminSajterIndexRoute: AuthenticatedAdminSajterIndexRoute,
+  }
+
+const AuthenticatedAdminRouteRouteWithChildren =
+  AuthenticatedAdminRouteRoute._addFileChildren(
+    AuthenticatedAdminRouteRouteChildren,
+  )
+
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRoute
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
   AuthenticatedPortalRouteRoute: typeof AuthenticatedPortalRouteRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRoute,
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
   AuthenticatedPortalRouteRoute: AuthenticatedPortalRouteRoute,
 }
 

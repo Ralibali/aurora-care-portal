@@ -27,6 +27,7 @@ import { Route as AuthenticatedAdminSupportRouteImport } from './routes/_authent
 import { Route as AuthenticatedPortalIndexRouteImport } from './routes/_authenticated/portal/index'
 import { Route as AuthenticatedAdminSajterIndexRouteImport } from './routes/_authenticated/admin/sajter/index'
 import { Route as AuthenticatedAdminSajterSiteIdRouteImport } from './routes/_authenticated/admin/sajter/$siteId'
+import { Route as AuthenticatedPortalSajterSiteIdRouteImport } from './routes/_authenticated/portal/sajter.$siteId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -126,6 +127,12 @@ const AuthenticatedAdminSajterSiteIdRoute =
     path: '/sajter/$siteId',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedPortalSajterSiteIdRoute =
+  AuthenticatedPortalSajterSiteIdRouteImport.update({
+    id: '/sajter/$siteId',
+    path: '/sajter/$siteId',
+    getParentRoute: () => AuthenticatedPortalRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/portal/': typeof AuthenticatedPortalIndexRoute
   '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
+  '/portal/sajter/$siteId': typeof AuthenticatedPortalSajterSiteIdRoute
   '/admin/sajter/': typeof AuthenticatedAdminSajterIndexRoute
 }
 export interface FileRoutesByTo {
@@ -161,6 +169,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/portal': typeof AuthenticatedPortalIndexRoute
   '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
+  '/portal/sajter/$siteId': typeof AuthenticatedPortalSajterSiteIdRoute
   '/admin/sajter': typeof AuthenticatedAdminSajterIndexRoute
 }
 export interface FileRoutesById {
@@ -182,6 +191,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/portal/': typeof AuthenticatedPortalIndexRoute
   '/_authenticated/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
+  '/_authenticated/portal/sajter/$siteId': typeof AuthenticatedPortalSajterSiteIdRoute
   '/_authenticated/admin/sajter/': typeof AuthenticatedAdminSajterIndexRoute
 }
 export interface FileRouteTypes {
@@ -203,6 +213,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/portal/'
     | '/admin/sajter/$siteId'
+    | '/portal/sajter/$siteId'
     | '/admin/sajter/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/portal'
     | '/admin/sajter/$siteId'
+    | '/portal/sajter/$siteId'
     | '/admin/sajter'
   id:
     | '__root__'
@@ -240,6 +252,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/'
     | '/_authenticated/portal/'
     | '/_authenticated/admin/sajter/$siteId'
+    | '/_authenticated/portal/sajter/$siteId'
     | '/_authenticated/admin/sajter/'
   fileRoutesById: FileRoutesById
 }
@@ -381,6 +394,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminSajterSiteIdRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/portal/sajter/$siteId': {
+      id: '/_authenticated/portal/sajter/$siteId'
+      path: '/sajter/$siteId'
+      fullPath: '/portal/sajter/$siteId'
+      preLoaderRoute: typeof AuthenticatedPortalSajterSiteIdRouteImport
+      parentRoute: typeof AuthenticatedPortalRouteRoute
+    }
   }
 }
 
@@ -414,11 +434,13 @@ const AuthenticatedAdminRouteRouteWithChildren =
 
 interface AuthenticatedPortalRouteRouteChildren {
   AuthenticatedPortalIndexRoute: typeof AuthenticatedPortalIndexRoute
+  AuthenticatedPortalSajterSiteIdRoute: typeof AuthenticatedPortalSajterSiteIdRoute
 }
 
 const AuthenticatedPortalRouteRouteChildren: AuthenticatedPortalRouteRouteChildren =
   {
     AuthenticatedPortalIndexRoute: AuthenticatedPortalIndexRoute,
+    AuthenticatedPortalSajterSiteIdRoute: AuthenticatedPortalSajterSiteIdRoute,
   }
 
 const AuthenticatedPortalRouteRouteWithChildren =

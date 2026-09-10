@@ -37,7 +37,17 @@ export function deriveHealth(input: SiteHealthInput): HealthStatus {
     ? (new Date(input.ssl_expires_at).getTime() - Date.now()) / 864e5
     : null;
 
+  // Ingen mätdata alls (t.ex. sajt under onboarding) – status är okänd, inte kritisk.
+  const unmeasured =
+    !input.last_backup_at &&
+    uptime == null &&
+    !input.ssl_expires_at &&
+    input.security_findings === 0 &&
+    input.pending_updates === 0;
+  if (unmeasured) return "unknown";
+
   const critical =
+
     input.security_findings >= 3 ||
     backupAgeH > interval * 2 ||
     (sslDays != null && sslDays <= 5) ||

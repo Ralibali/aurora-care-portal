@@ -10,15 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as PriserRouteImport } from './routes/priser'
 import { Route as TjansterRouteImport } from './routes/tjanster'
 import { Route as VanligaFragorRouteImport } from './routes/vanliga-fragor'
+import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
+import { Route as AuthenticatedPortalRouteRouteImport } from './routes/_authenticated/portal/route'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -46,6 +53,17 @@ const VanligaFragorRoute = VanligaFragorRouteImport.update({
   path: '/vanliga-fragor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPortalRouteRoute =
+  AuthenticatedPortalRouteRouteImport.update({
+    id: '/portal',
+    path: '/portal',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +72,8 @@ export interface FileRoutesByFullPath {
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
+  '/admin': typeof AuthenticatedAdminRouteRoute
+  '/portal': typeof AuthenticatedPortalRouteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,34 +82,58 @@ export interface FileRoutesByTo {
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
+  '/admin': typeof AuthenticatedAdminRouteRoute
+  '/portal': typeof AuthenticatedPortalRouteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/kontakt': typeof KontaktRoute
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteRoute
+  '/_authenticated/portal': typeof AuthenticatedPortalRouteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/kontakt' | '/priser' | '/tjanster' | '/vanliga-fragor'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/kontakt' | '/priser' | '/tjanster' | '/vanliga-fragor'
-  id:
-    | '__root__'
     | '/'
     | '/auth'
     | '/kontakt'
     | '/priser'
     | '/tjanster'
     | '/vanliga-fragor'
+    | '/admin'
+    | '/portal'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/auth'
+    | '/kontakt'
+    | '/priser'
+    | '/tjanster'
+    | '/vanliga-fragor'
+    | '/admin'
+    | '/portal'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/kontakt'
+    | '/priser'
+    | '/tjanster'
+    | '/vanliga-fragor'
+    | '/_authenticated/admin'
+    | '/_authenticated/portal'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   KontaktRoute: typeof KontaktRoute
   PriserRoute: typeof PriserRoute
@@ -104,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -141,11 +192,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VanligaFragorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal': {
+      id: '/_authenticated/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof AuthenticatedPortalRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRoute
+  AuthenticatedPortalRouteRoute: typeof AuthenticatedPortalRouteRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRoute,
+  AuthenticatedPortalRouteRoute: AuthenticatedPortalRouteRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   KontaktRoute: KontaktRoute,
   PriserRoute: PriserRoute,

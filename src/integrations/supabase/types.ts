@@ -282,6 +282,51 @@ export type Database = {
         }
         Relationships: []
       }
+      leads: {
+        Row: {
+          company: string | null
+          contact_name: string
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          phone: string | null
+          plan_slug: string | null
+          source: string
+          status: Database["public"]["Enums"]["lead_status"]
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          company?: string | null
+          contact_name: string
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          phone?: string | null
+          plan_slug?: string | null
+          source?: string
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          company?: string | null
+          contact_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          phone?: string | null
+          plan_slug?: string | null
+          source?: string
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
       maintenance_events: {
         Row: {
           created_at: string
@@ -722,6 +767,7 @@ export type Database = {
       health_status: "healthy" | "attention" | "critical" | "unknown"
       incident_severity: "low" | "medium" | "high" | "critical"
       incident_status: "open" | "investigating" | "resolved"
+      lead_status: "new" | "contacted" | "won" | "lost"
       report_status: "draft" | "ready" | "sent" | "overdue"
       site_status: "active" | "paused" | "onboarding" | "offboarded"
       subscription_status:
@@ -863,6 +909,7 @@ export const Constants = {
       health_status: ["healthy", "attention", "critical", "unknown"],
       incident_severity: ["low", "medium", "high", "critical"],
       incident_status: ["open", "investigating", "resolved"],
+      lead_status: ["new", "contacted", "won", "lost"],
       report_status: ["draft", "ready", "sent", "overdue"],
       site_status: ["active", "paused", "onboarding", "offboarded"],
       subscription_status: [

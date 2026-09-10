@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PriserRouteImport } from './routes/priser'
+import { Route as TjansterRouteImport } from './routes/tjanster'
+import { Route as VanligaFragorRouteImport } from './routes/vanliga-fragor'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PriserRoute = PriserRouteImport.update({
+  id: '/priser',
+  path: '/priser',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TjansterRoute = TjansterRouteImport.update({
+  id: '/tjanster',
+  path: '/tjanster',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VanligaFragorRoute = VanligaFragorRouteImport.update({
+  id: '/vanliga-fragor',
+  path: '/vanliga-fragor',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/priser': typeof PriserRoute
+  '/tjanster': typeof TjansterRoute
+  '/vanliga-fragor': typeof VanligaFragorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/priser': typeof PriserRoute
+  '/tjanster': typeof TjansterRoute
+  '/vanliga-fragor': typeof VanligaFragorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/priser': typeof PriserRoute
+  '/tjanster': typeof TjansterRoute
+  '/vanliga-fragor': typeof VanligaFragorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/priser' | '/tjanster' | '/vanliga-fragor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/priser' | '/tjanster' | '/vanliga-fragor'
+  id: '__root__' | '/' | '/priser' | '/tjanster' | '/vanliga-fragor'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PriserRoute: typeof PriserRoute
+  TjansterRoute: typeof TjansterRoute
+  VanligaFragorRoute: typeof VanligaFragorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/priser': {
+      id: '/priser'
+      path: '/priser'
+      fullPath: '/priser'
+      preLoaderRoute: typeof PriserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tjanster': {
+      id: '/tjanster'
+      path: '/tjanster'
+      fullPath: '/tjanster'
+      preLoaderRoute: typeof TjansterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vanliga-fragor': {
+      id: '/vanliga-fragor'
+      path: '/vanliga-fragor'
+      fullPath: '/vanliga-fragor'
+      preLoaderRoute: typeof VanligaFragorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PriserRoute: PriserRoute,
+  TjansterRoute: TjansterRoute,
+  VanligaFragorRoute: VanligaFragorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

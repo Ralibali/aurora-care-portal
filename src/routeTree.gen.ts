@@ -19,7 +19,11 @@ import { Route as VanligaFragorRouteImport } from './routes/vanliga-fragor'
 import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
 import { Route as AuthenticatedPortalRouteRouteImport } from './routes/_authenticated/portal/route'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminIncidenterRouteImport } from './routes/_authenticated/admin/incidenter'
 import { Route as AuthenticatedAdminKunderRouteImport } from './routes/_authenticated/admin/kunder'
+import { Route as AuthenticatedAdminPlanerRouteImport } from './routes/_authenticated/admin/planer'
+import { Route as AuthenticatedAdminRapporterRouteImport } from './routes/_authenticated/admin/rapporter'
+import { Route as AuthenticatedAdminSupportRouteImport } from './routes/_authenticated/admin/support'
 import { Route as AuthenticatedAdminSajterIndexRouteImport } from './routes/_authenticated/admin/sajter/index'
 import { Route as AuthenticatedAdminSajterSiteIdRouteImport } from './routes/_authenticated/admin/sajter/$siteId'
 
@@ -73,10 +77,34 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRouteRoute,
 } as any)
+const AuthenticatedAdminIncidenterRoute =
+  AuthenticatedAdminIncidenterRouteImport.update({
+    id: '/incidenter',
+    path: '/incidenter',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAdminKunderRoute =
   AuthenticatedAdminKunderRouteImport.update({
     id: '/kunder',
     path: '/kunder',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminPlanerRoute =
+  AuthenticatedAdminPlanerRouteImport.update({
+    id: '/planer',
+    path: '/planer',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminRapporterRoute =
+  AuthenticatedAdminRapporterRouteImport.update({
+    id: '/rapporter',
+    path: '/rapporter',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminSupportRoute =
+  AuthenticatedAdminSupportRouteImport.update({
+    id: '/support',
+    path: '/support',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
 const AuthenticatedAdminSajterIndexRoute =
@@ -101,7 +129,11 @@ export interface FileRoutesByFullPath {
   '/vanliga-fragor': typeof VanligaFragorRoute
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/portal': typeof AuthenticatedPortalRouteRoute
+  '/admin/incidenter': typeof AuthenticatedAdminIncidenterRoute
   '/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/admin/planer': typeof AuthenticatedAdminPlanerRoute
+  '/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
+  '/admin/support': typeof AuthenticatedAdminSupportRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
   '/admin/sajter/': typeof AuthenticatedAdminSajterIndexRoute
@@ -114,7 +146,11 @@ export interface FileRoutesByTo {
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
   '/portal': typeof AuthenticatedPortalRouteRoute
+  '/admin/incidenter': typeof AuthenticatedAdminIncidenterRoute
   '/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/admin/planer': typeof AuthenticatedAdminPlanerRoute
+  '/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
+  '/admin/support': typeof AuthenticatedAdminSupportRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
   '/admin/sajter': typeof AuthenticatedAdminSajterIndexRoute
@@ -130,7 +166,11 @@ export interface FileRoutesById {
   '/vanliga-fragor': typeof VanligaFragorRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/portal': typeof AuthenticatedPortalRouteRoute
+  '/_authenticated/admin/incidenter': typeof AuthenticatedAdminIncidenterRoute
   '/_authenticated/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/_authenticated/admin/planer': typeof AuthenticatedAdminPlanerRoute
+  '/_authenticated/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
+  '/_authenticated/admin/support': typeof AuthenticatedAdminSupportRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
   '/_authenticated/admin/sajter/': typeof AuthenticatedAdminSajterIndexRoute
@@ -146,7 +186,11 @@ export interface FileRouteTypes {
     | '/vanliga-fragor'
     | '/admin'
     | '/portal'
+    | '/admin/incidenter'
     | '/admin/kunder'
+    | '/admin/planer'
+    | '/admin/rapporter'
+    | '/admin/support'
     | '/admin/'
     | '/admin/sajter/$siteId'
     | '/admin/sajter/'
@@ -159,7 +203,11 @@ export interface FileRouteTypes {
     | '/tjanster'
     | '/vanliga-fragor'
     | '/portal'
+    | '/admin/incidenter'
     | '/admin/kunder'
+    | '/admin/planer'
+    | '/admin/rapporter'
+    | '/admin/support'
     | '/admin'
     | '/admin/sajter/$siteId'
     | '/admin/sajter'
@@ -174,7 +222,11 @@ export interface FileRouteTypes {
     | '/vanliga-fragor'
     | '/_authenticated/admin'
     | '/_authenticated/portal'
+    | '/_authenticated/admin/incidenter'
     | '/_authenticated/admin/kunder'
+    | '/_authenticated/admin/planer'
+    | '/_authenticated/admin/rapporter'
+    | '/_authenticated/admin/support'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/sajter/$siteId'
     | '/_authenticated/admin/sajter/'
@@ -262,11 +314,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/incidenter': {
+      id: '/_authenticated/admin/incidenter'
+      path: '/incidenter'
+      fullPath: '/admin/incidenter'
+      preLoaderRoute: typeof AuthenticatedAdminIncidenterRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/admin/kunder': {
       id: '/_authenticated/admin/kunder'
       path: '/kunder'
       fullPath: '/admin/kunder'
       preLoaderRoute: typeof AuthenticatedAdminKunderRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/planer': {
+      id: '/_authenticated/admin/planer'
+      path: '/planer'
+      fullPath: '/admin/planer'
+      preLoaderRoute: typeof AuthenticatedAdminPlanerRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/rapporter': {
+      id: '/_authenticated/admin/rapporter'
+      path: '/rapporter'
+      fullPath: '/admin/rapporter'
+      preLoaderRoute: typeof AuthenticatedAdminRapporterRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/support': {
+      id: '/_authenticated/admin/support'
+      path: '/support'
+      fullPath: '/admin/support'
+      preLoaderRoute: typeof AuthenticatedAdminSupportRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
     '/_authenticated/admin/sajter/': {
@@ -287,7 +367,11 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminIncidenterRoute: typeof AuthenticatedAdminIncidenterRoute
   AuthenticatedAdminKunderRoute: typeof AuthenticatedAdminKunderRoute
+  AuthenticatedAdminPlanerRoute: typeof AuthenticatedAdminPlanerRoute
+  AuthenticatedAdminRapporterRoute: typeof AuthenticatedAdminRapporterRoute
+  AuthenticatedAdminSupportRoute: typeof AuthenticatedAdminSupportRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminSajterSiteIdRoute: typeof AuthenticatedAdminSajterSiteIdRoute
   AuthenticatedAdminSajterIndexRoute: typeof AuthenticatedAdminSajterIndexRoute
@@ -295,7 +379,11 @@ interface AuthenticatedAdminRouteRouteChildren {
 
 const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
   {
+    AuthenticatedAdminIncidenterRoute: AuthenticatedAdminIncidenterRoute,
     AuthenticatedAdminKunderRoute: AuthenticatedAdminKunderRoute,
+    AuthenticatedAdminPlanerRoute: AuthenticatedAdminPlanerRoute,
+    AuthenticatedAdminRapporterRoute: AuthenticatedAdminRapporterRoute,
+    AuthenticatedAdminSupportRoute: AuthenticatedAdminSupportRoute,
     AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
     AuthenticatedAdminSajterSiteIdRoute: AuthenticatedAdminSajterSiteIdRoute,
     AuthenticatedAdminSajterIndexRoute: AuthenticatedAdminSajterIndexRoute,

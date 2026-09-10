@@ -25,6 +25,7 @@ import { Route as AuthenticatedAdminPlanerRouteImport } from './routes/_authenti
 import { Route as AuthenticatedAdminRapporterRouteImport } from './routes/_authenticated/admin/rapporter'
 import { Route as AuthenticatedAdminSupportRouteImport } from './routes/_authenticated/admin/support'
 import { Route as AuthenticatedPortalIndexRouteImport } from './routes/_authenticated/portal/index'
+import { Route as AuthenticatedPortalRapporterRouteImport } from './routes/_authenticated/portal/rapporter'
 import { Route as AuthenticatedAdminSajterIndexRouteImport } from './routes/_authenticated/admin/sajter/index'
 import { Route as AuthenticatedAdminSajterSiteIdRouteImport } from './routes/_authenticated/admin/sajter/$siteId'
 import { Route as AuthenticatedPortalSajterSiteIdRouteImport } from './routes/_authenticated/portal/sajter.$siteId'
@@ -115,6 +116,12 @@ const AuthenticatedPortalIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedPortalRouteRoute,
   } as any)
+const AuthenticatedPortalRapporterRoute =
+  AuthenticatedPortalRapporterRouteImport.update({
+    id: '/rapporter',
+    path: '/rapporter',
+    getParentRoute: () => AuthenticatedPortalRouteRoute,
+  } as any)
 const AuthenticatedAdminSajterIndexRoute =
   AuthenticatedAdminSajterIndexRouteImport.update({
     id: '/sajter/',
@@ -148,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/admin/planer': typeof AuthenticatedAdminPlanerRoute
   '/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
   '/admin/support': typeof AuthenticatedAdminSupportRoute
+  '/portal/rapporter': typeof AuthenticatedPortalRapporterRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/portal/': typeof AuthenticatedPortalIndexRoute
   '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
@@ -166,6 +174,7 @@ export interface FileRoutesByTo {
   '/admin/planer': typeof AuthenticatedAdminPlanerRoute
   '/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
   '/admin/support': typeof AuthenticatedAdminSupportRoute
+  '/portal/rapporter': typeof AuthenticatedPortalRapporterRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/portal': typeof AuthenticatedPortalIndexRoute
   '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
@@ -188,6 +197,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/planer': typeof AuthenticatedAdminPlanerRoute
   '/_authenticated/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
   '/_authenticated/admin/support': typeof AuthenticatedAdminSupportRoute
+  '/_authenticated/portal/rapporter': typeof AuthenticatedPortalRapporterRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/portal/': typeof AuthenticatedPortalIndexRoute
   '/_authenticated/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/admin/planer'
     | '/admin/rapporter'
     | '/admin/support'
+    | '/portal/rapporter'
     | '/admin/'
     | '/portal/'
     | '/admin/sajter/$siteId'
@@ -228,6 +239,7 @@ export interface FileRouteTypes {
     | '/admin/planer'
     | '/admin/rapporter'
     | '/admin/support'
+    | '/portal/rapporter'
     | '/admin'
     | '/portal'
     | '/admin/sajter/$siteId'
@@ -249,6 +261,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/planer'
     | '/_authenticated/admin/rapporter'
     | '/_authenticated/admin/support'
+    | '/_authenticated/portal/rapporter'
     | '/_authenticated/admin/'
     | '/_authenticated/portal/'
     | '/_authenticated/admin/sajter/$siteId'
@@ -380,6 +393,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortalIndexRouteImport
       parentRoute: typeof AuthenticatedPortalRouteRoute
     }
+    '/_authenticated/portal/rapporter': {
+      id: '/_authenticated/portal/rapporter'
+      path: '/rapporter'
+      fullPath: '/portal/rapporter'
+      preLoaderRoute: typeof AuthenticatedPortalRapporterRouteImport
+      parentRoute: typeof AuthenticatedPortalRouteRoute
+    }
     '/_authenticated/admin/sajter/': {
       id: '/_authenticated/admin/sajter/'
       path: '/sajter'
@@ -433,12 +453,14 @@ const AuthenticatedAdminRouteRouteWithChildren =
   )
 
 interface AuthenticatedPortalRouteRouteChildren {
+  AuthenticatedPortalRapporterRoute: typeof AuthenticatedPortalRapporterRoute
   AuthenticatedPortalIndexRoute: typeof AuthenticatedPortalIndexRoute
   AuthenticatedPortalSajterSiteIdRoute: typeof AuthenticatedPortalSajterSiteIdRoute
 }
 
 const AuthenticatedPortalRouteRouteChildren: AuthenticatedPortalRouteRouteChildren =
   {
+    AuthenticatedPortalRapporterRoute: AuthenticatedPortalRapporterRoute,
     AuthenticatedPortalIndexRoute: AuthenticatedPortalIndexRoute,
     AuthenticatedPortalSajterSiteIdRoute: AuthenticatedPortalSajterSiteIdRoute,
   }

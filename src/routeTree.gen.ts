@@ -10,33 +10,184 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as PriserRouteImport } from './routes/priser'
+import { Route as TjansterRouteImport } from './routes/tjanster'
+import { Route as VanligaFragorRouteImport } from './routes/vanliga-fragor'
+import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
+import { Route as AuthenticatedPortalRouteRouteImport } from './routes/_authenticated/portal/route'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminKunderRouteImport } from './routes/_authenticated/admin/kunder'
+import { Route as AuthenticatedAdminSajterIndexRouteImport } from './routes/_authenticated/admin/sajter/index'
+import { Route as AuthenticatedAdminSajterSiteIdRouteImport } from './routes/_authenticated/admin/sajter/$siteId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PriserRoute = PriserRouteImport.update({
+  id: '/priser',
+  path: '/priser',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TjansterRoute = TjansterRouteImport.update({
+  id: '/tjanster',
+  path: '/tjanster',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VanligaFragorRoute = VanligaFragorRouteImport.update({
+  id: '/vanliga-fragor',
+  path: '/vanliga-fragor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPortalRouteRoute =
+  AuthenticatedPortalRouteRouteImport.update({
+    id: '/portal',
+    path: '/portal',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRouteRoute,
+} as any)
+const AuthenticatedAdminKunderRoute =
+  AuthenticatedAdminKunderRouteImport.update({
+    id: '/kunder',
+    path: '/kunder',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminSajterIndexRoute =
+  AuthenticatedAdminSajterIndexRouteImport.update({
+    id: '/sajter/',
+    path: '/sajter/',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminSajterSiteIdRoute =
+  AuthenticatedAdminSajterSiteIdRouteImport.update({
+    id: '/sajter/$siteId',
+    path: '/sajter/$siteId',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/kontakt': typeof KontaktRoute
+  '/priser': typeof PriserRoute
+  '/tjanster': typeof TjansterRoute
+  '/vanliga-fragor': typeof VanligaFragorRoute
+  '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/portal': typeof AuthenticatedPortalRouteRoute
+  '/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
+  '/admin/sajter/': typeof AuthenticatedAdminSajterIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/kontakt': typeof KontaktRoute
+  '/priser': typeof PriserRoute
+  '/tjanster': typeof TjansterRoute
+  '/vanliga-fragor': typeof VanligaFragorRoute
+  '/portal': typeof AuthenticatedPortalRouteRoute
+  '/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
+  '/admin/sajter': typeof AuthenticatedAdminSajterIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/kontakt': typeof KontaktRoute
+  '/priser': typeof PriserRoute
+  '/tjanster': typeof TjansterRoute
+  '/vanliga-fragor': typeof VanligaFragorRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/_authenticated/portal': typeof AuthenticatedPortalRouteRoute
+  '/_authenticated/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
+  '/_authenticated/admin/sajter/': typeof AuthenticatedAdminSajterIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/kontakt'
+    | '/priser'
+    | '/tjanster'
+    | '/vanliga-fragor'
+    | '/admin'
+    | '/portal'
+    | '/admin/kunder'
+    | '/admin/'
+    | '/admin/sajter/$siteId'
+    | '/admin/sajter/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/kontakt'
+    | '/priser'
+    | '/tjanster'
+    | '/vanliga-fragor'
+    | '/portal'
+    | '/admin/kunder'
+    | '/admin'
+    | '/admin/sajter/$siteId'
+    | '/admin/sajter'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/kontakt'
+    | '/priser'
+    | '/tjanster'
+    | '/vanliga-fragor'
+    | '/_authenticated/admin'
+    | '/_authenticated/portal'
+    | '/_authenticated/admin/kunder'
+    | '/_authenticated/admin/'
+    | '/_authenticated/admin/sajter/$siteId'
+    | '/_authenticated/admin/sajter/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  KontaktRoute: typeof KontaktRoute
+  PriserRoute: typeof PriserRoute
+  TjansterRoute: typeof TjansterRoute
+  VanligaFragorRoute: typeof VanligaFragorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +199,134 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/priser': {
+      id: '/priser'
+      path: '/priser'
+      fullPath: '/priser'
+      preLoaderRoute: typeof PriserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tjanster': {
+      id: '/tjanster'
+      path: '/tjanster'
+      fullPath: '/tjanster'
+      preLoaderRoute: typeof TjansterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vanliga-fragor': {
+      id: '/vanliga-fragor'
+      path: '/vanliga-fragor'
+      fullPath: '/vanliga-fragor'
+      preLoaderRoute: typeof VanligaFragorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal': {
+      id: '/_authenticated/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof AuthenticatedPortalRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/kunder': {
+      id: '/_authenticated/admin/kunder'
+      path: '/kunder'
+      fullPath: '/admin/kunder'
+      preLoaderRoute: typeof AuthenticatedAdminKunderRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/sajter/': {
+      id: '/_authenticated/admin/sajter/'
+      path: '/sajter'
+      fullPath: '/admin/sajter/'
+      preLoaderRoute: typeof AuthenticatedAdminSajterIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/sajter/$siteId': {
+      id: '/_authenticated/admin/sajter/$siteId'
+      path: '/sajter/$siteId'
+      fullPath: '/admin/sajter/$siteId'
+      preLoaderRoute: typeof AuthenticatedAdminSajterSiteIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminKunderRoute: typeof AuthenticatedAdminKunderRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminSajterSiteIdRoute: typeof AuthenticatedAdminSajterSiteIdRoute
+  AuthenticatedAdminSajterIndexRoute: typeof AuthenticatedAdminSajterIndexRoute
+}
+
+const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
+  {
+    AuthenticatedAdminKunderRoute: AuthenticatedAdminKunderRoute,
+    AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+    AuthenticatedAdminSajterSiteIdRoute: AuthenticatedAdminSajterSiteIdRoute,
+    AuthenticatedAdminSajterIndexRoute: AuthenticatedAdminSajterIndexRoute,
+  }
+
+const AuthenticatedAdminRouteRouteWithChildren =
+  AuthenticatedAdminRouteRoute._addFileChildren(
+    AuthenticatedAdminRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
+  AuthenticatedPortalRouteRoute: typeof AuthenticatedPortalRouteRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
+  AuthenticatedPortalRouteRoute: AuthenticatedPortalRouteRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  KontaktRoute: KontaktRoute,
+  PriserRoute: PriserRoute,
+  TjansterRoute: TjansterRoute,
+  VanligaFragorRoute: VanligaFragorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

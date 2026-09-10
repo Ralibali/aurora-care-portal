@@ -160,8 +160,11 @@ export function EventList({ events }: { events: MaintenanceEvent[] }) {
       {events.map((event) => (
         <li key={event.id} className="flex flex-wrap items-start justify-between gap-3 py-3">
           <div className="min-w-0">
-            <p className="font-medium">{eventLabels[event.event_type] ?? event.event_type}</p>
-            <p className="text-sm text-muted-foreground">{event.summary}</p>
+            <p className="font-medium">{event.title}</p>
+            <p className="text-sm text-muted-foreground">
+              {eventLabels[event.event_type] ?? event.event_type}
+              {event.detail ? ` · ${event.detail}` : ""}
+            </p>
           </div>
           <p className="text-sm text-muted-foreground">{formatDateTime(event.occurred_at)}</p>
         </li>

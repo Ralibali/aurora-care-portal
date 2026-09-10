@@ -21,6 +21,7 @@ import { Route as AuthenticatedPortalRouteRouteImport } from './routes/_authenti
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 import { Route as AuthenticatedAdminIncidenterRouteImport } from './routes/_authenticated/admin/incidenter'
 import { Route as AuthenticatedAdminKunderRouteImport } from './routes/_authenticated/admin/kunder'
+import { Route as AuthenticatedAdminOnboardingRouteImport } from './routes/_authenticated/admin/onboarding'
 import { Route as AuthenticatedAdminPlanerRouteImport } from './routes/_authenticated/admin/planer'
 import { Route as AuthenticatedAdminRapporterRouteImport } from './routes/_authenticated/admin/rapporter'
 import { Route as AuthenticatedAdminSupportRouteImport } from './routes/_authenticated/admin/support'
@@ -92,6 +93,12 @@ const AuthenticatedAdminKunderRoute =
   AuthenticatedAdminKunderRouteImport.update({
     id: '/kunder',
     path: '/kunder',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminOnboardingRoute =
+  AuthenticatedAdminOnboardingRouteImport.update({
+    id: '/onboarding',
+    path: '/onboarding',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
 const AuthenticatedAdminPlanerRoute =
@@ -166,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/portal': typeof AuthenticatedPortalRouteRouteWithChildren
   '/admin/incidenter': typeof AuthenticatedAdminIncidenterRoute
   '/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
   '/admin/planer': typeof AuthenticatedAdminPlanerRoute
   '/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
   '/admin/support': typeof AuthenticatedAdminSupportRoute
@@ -187,6 +195,7 @@ export interface FileRoutesByTo {
   '/vanliga-fragor': typeof VanligaFragorRoute
   '/admin/incidenter': typeof AuthenticatedAdminIncidenterRoute
   '/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
   '/admin/planer': typeof AuthenticatedAdminPlanerRoute
   '/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
   '/admin/support': typeof AuthenticatedAdminSupportRoute
@@ -212,6 +221,7 @@ export interface FileRoutesById {
   '/_authenticated/portal': typeof AuthenticatedPortalRouteRouteWithChildren
   '/_authenticated/admin/incidenter': typeof AuthenticatedAdminIncidenterRoute
   '/_authenticated/admin/kunder': typeof AuthenticatedAdminKunderRoute
+  '/_authenticated/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
   '/_authenticated/admin/planer': typeof AuthenticatedAdminPlanerRoute
   '/_authenticated/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
   '/_authenticated/admin/support': typeof AuthenticatedAdminSupportRoute
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/portal'
     | '/admin/incidenter'
     | '/admin/kunder'
+    | '/admin/onboarding'
     | '/admin/planer'
     | '/admin/rapporter'
     | '/admin/support'
@@ -258,6 +269,7 @@ export interface FileRouteTypes {
     | '/vanliga-fragor'
     | '/admin/incidenter'
     | '/admin/kunder'
+    | '/admin/onboarding'
     | '/admin/planer'
     | '/admin/rapporter'
     | '/admin/support'
@@ -282,6 +294,7 @@ export interface FileRouteTypes {
     | '/_authenticated/portal'
     | '/_authenticated/admin/incidenter'
     | '/_authenticated/admin/kunder'
+    | '/_authenticated/admin/onboarding'
     | '/_authenticated/admin/planer'
     | '/_authenticated/admin/rapporter'
     | '/_authenticated/admin/support'
@@ -391,6 +404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminKunderRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/onboarding': {
+      id: '/_authenticated/admin/onboarding'
+      path: '/onboarding'
+      fullPath: '/admin/onboarding'
+      preLoaderRoute: typeof AuthenticatedAdminOnboardingRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/admin/planer': {
       id: '/_authenticated/admin/planer'
       path: '/planer'
@@ -467,6 +487,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedAdminRouteRouteChildren {
   AuthenticatedAdminIncidenterRoute: typeof AuthenticatedAdminIncidenterRoute
   AuthenticatedAdminKunderRoute: typeof AuthenticatedAdminKunderRoute
+  AuthenticatedAdminOnboardingRoute: typeof AuthenticatedAdminOnboardingRoute
   AuthenticatedAdminPlanerRoute: typeof AuthenticatedAdminPlanerRoute
   AuthenticatedAdminRapporterRoute: typeof AuthenticatedAdminRapporterRoute
   AuthenticatedAdminSupportRoute: typeof AuthenticatedAdminSupportRoute
@@ -479,6 +500,7 @@ const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren
   {
     AuthenticatedAdminIncidenterRoute: AuthenticatedAdminIncidenterRoute,
     AuthenticatedAdminKunderRoute: AuthenticatedAdminKunderRoute,
+    AuthenticatedAdminOnboardingRoute: AuthenticatedAdminOnboardingRoute,
     AuthenticatedAdminPlanerRoute: AuthenticatedAdminPlanerRoute,
     AuthenticatedAdminRapporterRoute: AuthenticatedAdminRapporterRoute,
     AuthenticatedAdminSupportRoute: AuthenticatedAdminSupportRoute,

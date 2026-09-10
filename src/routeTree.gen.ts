@@ -27,6 +27,7 @@ import { Route as AuthenticatedAdminSupportRouteImport } from './routes/_authent
 import { Route as AuthenticatedPortalIndexRouteImport } from './routes/_authenticated/portal/index'
 import { Route as AuthenticatedPortalRapporterRouteImport } from './routes/_authenticated/portal/rapporter'
 import { Route as AuthenticatedPortalSupportRouteImport } from './routes/_authenticated/portal/support'
+import { Route as AuthenticatedRapportReportIdRouteImport } from './routes/_authenticated/rapport.$reportId'
 import { Route as AuthenticatedAdminSajterIndexRouteImport } from './routes/_authenticated/admin/sajter/index'
 import { Route as AuthenticatedAdminSajterSiteIdRouteImport } from './routes/_authenticated/admin/sajter/$siteId'
 import { Route as AuthenticatedPortalSajterSiteIdRouteImport } from './routes/_authenticated/portal/sajter.$siteId'
@@ -129,6 +130,12 @@ const AuthenticatedPortalSupportRoute =
     path: '/support',
     getParentRoute: () => AuthenticatedPortalRouteRoute,
   } as any)
+const AuthenticatedRapportReportIdRoute =
+  AuthenticatedRapportReportIdRouteImport.update({
+    id: '/rapport/$reportId',
+    path: '/rapport/$reportId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminSajterIndexRoute =
   AuthenticatedAdminSajterIndexRouteImport.update({
     id: '/sajter/',
@@ -164,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/admin/support': typeof AuthenticatedAdminSupportRoute
   '/portal/rapporter': typeof AuthenticatedPortalRapporterRoute
   '/portal/support': typeof AuthenticatedPortalSupportRoute
+  '/rapport/$reportId': typeof AuthenticatedRapportReportIdRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/portal/': typeof AuthenticatedPortalIndexRoute
   '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
@@ -184,6 +192,7 @@ export interface FileRoutesByTo {
   '/admin/support': typeof AuthenticatedAdminSupportRoute
   '/portal/rapporter': typeof AuthenticatedPortalRapporterRoute
   '/portal/support': typeof AuthenticatedPortalSupportRoute
+  '/rapport/$reportId': typeof AuthenticatedRapportReportIdRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/portal': typeof AuthenticatedPortalIndexRoute
   '/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
@@ -208,6 +217,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/support': typeof AuthenticatedAdminSupportRoute
   '/_authenticated/portal/rapporter': typeof AuthenticatedPortalRapporterRoute
   '/_authenticated/portal/support': typeof AuthenticatedPortalSupportRoute
+  '/_authenticated/rapport/$reportId': typeof AuthenticatedRapportReportIdRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/portal/': typeof AuthenticatedPortalIndexRoute
   '/_authenticated/admin/sajter/$siteId': typeof AuthenticatedAdminSajterSiteIdRoute
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/admin/support'
     | '/portal/rapporter'
     | '/portal/support'
+    | '/rapport/$reportId'
     | '/admin/'
     | '/portal/'
     | '/admin/sajter/$siteId'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/admin/support'
     | '/portal/rapporter'
     | '/portal/support'
+    | '/rapport/$reportId'
     | '/admin'
     | '/portal'
     | '/admin/sajter/$siteId'
@@ -275,6 +287,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/support'
     | '/_authenticated/portal/rapporter'
     | '/_authenticated/portal/support'
+    | '/_authenticated/rapport/$reportId'
     | '/_authenticated/admin/'
     | '/_authenticated/portal/'
     | '/_authenticated/admin/sajter/$siteId'
@@ -420,6 +433,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortalSupportRouteImport
       parentRoute: typeof AuthenticatedPortalRouteRoute
     }
+    '/_authenticated/rapport/$reportId': {
+      id: '/_authenticated/rapport/$reportId'
+      path: '/rapport/$reportId'
+      fullPath: '/rapport/$reportId'
+      preLoaderRoute: typeof AuthenticatedRapportReportIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/sajter/': {
       id: '/_authenticated/admin/sajter/'
       path: '/sajter'
@@ -495,11 +515,13 @@ const AuthenticatedPortalRouteRouteWithChildren =
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
   AuthenticatedPortalRouteRoute: typeof AuthenticatedPortalRouteRouteWithChildren
+  AuthenticatedRapportReportIdRoute: typeof AuthenticatedRapportReportIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
   AuthenticatedPortalRouteRoute: AuthenticatedPortalRouteRouteWithChildren,
+  AuthenticatedRapportReportIdRoute: AuthenticatedRapportReportIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

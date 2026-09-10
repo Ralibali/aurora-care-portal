@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as PriserRouteImport } from './routes/priser'
 import { Route as TjansterRouteImport } from './routes/tjanster'
 import { Route as VanligaFragorRouteImport } from './routes/vanliga-fragor'
@@ -17,6 +19,16 @@ import { Route as VanligaFragorRouteImport } from './routes/vanliga-fragor'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PriserRoute = PriserRouteImport.update({
@@ -37,12 +49,16 @@ const VanligaFragorRoute = VanligaFragorRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/kontakt': typeof KontaktRoute
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/kontakt': typeof KontaktRoute
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
@@ -50,20 +66,32 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/kontakt': typeof KontaktRoute
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/priser' | '/tjanster' | '/vanliga-fragor'
+  fullPaths:
+    '/' | '/auth' | '/kontakt' | '/priser' | '/tjanster' | '/vanliga-fragor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/priser' | '/tjanster' | '/vanliga-fragor'
-  id: '__root__' | '/' | '/priser' | '/tjanster' | '/vanliga-fragor'
+  to: '/' | '/auth' | '/kontakt' | '/priser' | '/tjanster' | '/vanliga-fragor'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/kontakt'
+    | '/priser'
+    | '/tjanster'
+    | '/vanliga-fragor'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  KontaktRoute: typeof KontaktRoute
   PriserRoute: typeof PriserRoute
   TjansterRoute: typeof TjansterRoute
   VanligaFragorRoute: typeof VanligaFragorRoute
@@ -76,6 +104,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/priser': {
@@ -104,6 +146,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  KontaktRoute: KontaktRoute,
   PriserRoute: PriserRoute,
   TjansterRoute: TjansterRoute,
   VanligaFragorRoute: VanligaFragorRoute,

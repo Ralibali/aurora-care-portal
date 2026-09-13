@@ -2,6 +2,7 @@ import { useQueries } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { EventList, IncidentList, SiteSummary } from "@/components/app/SiteHealthPanels";
+import { SiteAuditOverview } from "@/components/app/SiteAuditOverview";
 import { EmptyState, ErrorState, LoadingRows } from "@/components/common/States";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { reportsQuery, siteEventsQuery, siteIncidentsQuery, siteQuery } from "@/lib/data";
@@ -20,7 +21,9 @@ function AdminSiteDetail() {
   if (site.isLoading) return <LoadingRows rows={4} />;
   if (site.error) return <ErrorState message={(site.error as Error).message} />;
   if (!site.data) {
-    return <EmptyState title="Sajten hittades inte" description="Kontrollera länken och försök igen." />;
+    return (
+      <EmptyState title="Sajten hittades inte" description="Kontrollera länken och försök igen." />
+    );
   }
 
   const siteReports = (reports.data ?? []).filter((r) => r.site_id === siteId);
@@ -29,13 +32,19 @@ function AdminSiteDetail() {
     <div className="space-y-8">
       <SiteSummary site={site.data} />
 
+      <SiteAuditOverview siteId={siteId} canRun />
+
       <div className="grid gap-6 lg:grid-cols-2">
         <Card className="border-border/70">
           <CardHeader>
             <CardTitle className="text-base">Incidenter</CardTitle>
           </CardHeader>
           <CardContent>
-            {incidents.isLoading ? <LoadingRows rows={2} /> : <IncidentList incidents={incidents.data ?? []} />}
+            {incidents.isLoading ? (
+              <LoadingRows rows={2} />
+            ) : (
+              <IncidentList incidents={incidents.data ?? []} />
+            )}
           </CardContent>
         </Card>
 
@@ -88,9 +97,7 @@ function AdminSiteDetail() {
 }
 
 function Checklist({ value }: { value: unknown }) {
-  const items = Array.isArray(value)
-    ? (value as Array<{ label?: string; done?: boolean }>)
-    : [];
+  const items = Array.isArray(value) ? (value as Array<{ label?: string; done?: boolean }>) : [];
   if (items.length === 0) {
     return <p className="text-sm text-muted-foreground">Ingen checklista registrerad.</p>;
   }
@@ -100,7 +107,11 @@ function Checklist({ value }: { value: unknown }) {
         <li key={i} className="flex items-center gap-2">
           <span
             aria-hidden="true"
-            className={item.done ? "size-2 rounded-full bg-success" : "size-2 rounded-full bg-muted-foreground/40"}
+            className={
+              item.done
+                ? "size-2 rounded-full bg-success"
+                : "size-2 rounded-full bg-muted-foreground/40"
+            }
           />
           <span className={item.done ? "text-muted-foreground line-through" : ""}>
             {item.label ?? "Punkt"}

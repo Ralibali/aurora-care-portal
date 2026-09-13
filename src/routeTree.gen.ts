@@ -19,6 +19,7 @@ import { Route as VanligaFragorRouteImport } from './routes/vanliga-fragor'
 import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
 import { Route as AuthenticatedPortalRouteRouteImport } from './routes/_authenticated/portal/route'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminGranskningarRouteImport } from './routes/_authenticated/admin/granskningar'
 import { Route as AuthenticatedAdminIncidenterRouteImport } from './routes/_authenticated/admin/incidenter'
 import { Route as AuthenticatedAdminIntegrationerRouteImport } from './routes/_authenticated/admin/integrationer'
 import { Route as AuthenticatedAdminKunderRouteImport } from './routes/_authenticated/admin/kunder'
@@ -84,6 +85,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRouteRoute,
 } as any)
+const AuthenticatedAdminGranskningarRoute =
+  AuthenticatedAdminGranskningarRouteImport.update({
+    id: '/granskningar',
+    path: '/granskningar',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAdminIncidenterRoute =
   AuthenticatedAdminIncidenterRouteImport.update({
     id: '/incidenter',
@@ -178,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/vanliga-fragor': typeof VanligaFragorRoute
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/portal': typeof AuthenticatedPortalRouteRouteWithChildren
+  '/admin/granskningar': typeof AuthenticatedAdminGranskningarRoute
   '/admin/incidenter': typeof AuthenticatedAdminIncidenterRoute
   '/admin/integrationer': typeof AuthenticatedAdminIntegrationerRoute
   '/admin/kunder': typeof AuthenticatedAdminKunderRoute
@@ -201,6 +209,7 @@ export interface FileRoutesByTo {
   '/priser': typeof PriserRoute
   '/tjanster': typeof TjansterRoute
   '/vanliga-fragor': typeof VanligaFragorRoute
+  '/admin/granskningar': typeof AuthenticatedAdminGranskningarRoute
   '/admin/incidenter': typeof AuthenticatedAdminIncidenterRoute
   '/admin/integrationer': typeof AuthenticatedAdminIntegrationerRoute
   '/admin/kunder': typeof AuthenticatedAdminKunderRoute
@@ -228,6 +237,7 @@ export interface FileRoutesById {
   '/vanliga-fragor': typeof VanligaFragorRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/portal': typeof AuthenticatedPortalRouteRouteWithChildren
+  '/_authenticated/admin/granskningar': typeof AuthenticatedAdminGranskningarRoute
   '/_authenticated/admin/incidenter': typeof AuthenticatedAdminIncidenterRoute
   '/_authenticated/admin/integrationer': typeof AuthenticatedAdminIntegrationerRoute
   '/_authenticated/admin/kunder': typeof AuthenticatedAdminKunderRoute
@@ -255,6 +265,7 @@ export interface FileRouteTypes {
     | '/vanliga-fragor'
     | '/admin'
     | '/portal'
+    | '/admin/granskningar'
     | '/admin/incidenter'
     | '/admin/integrationer'
     | '/admin/kunder'
@@ -278,6 +289,7 @@ export interface FileRouteTypes {
     | '/priser'
     | '/tjanster'
     | '/vanliga-fragor'
+    | '/admin/granskningar'
     | '/admin/incidenter'
     | '/admin/integrationer'
     | '/admin/kunder'
@@ -304,6 +316,7 @@ export interface FileRouteTypes {
     | '/vanliga-fragor'
     | '/_authenticated/admin'
     | '/_authenticated/portal'
+    | '/_authenticated/admin/granskningar'
     | '/_authenticated/admin/incidenter'
     | '/_authenticated/admin/integrationer'
     | '/_authenticated/admin/kunder'
@@ -401,6 +414,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/granskningar': {
+      id: '/_authenticated/admin/granskningar'
+      path: '/granskningar'
+      fullPath: '/admin/granskningar'
+      preLoaderRoute: typeof AuthenticatedAdminGranskningarRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
     '/_authenticated/admin/incidenter': {
@@ -505,6 +525,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminGranskningarRoute: typeof AuthenticatedAdminGranskningarRoute
   AuthenticatedAdminIncidenterRoute: typeof AuthenticatedAdminIncidenterRoute
   AuthenticatedAdminIntegrationerRoute: typeof AuthenticatedAdminIntegrationerRoute
   AuthenticatedAdminKunderRoute: typeof AuthenticatedAdminKunderRoute
@@ -519,6 +540,7 @@ interface AuthenticatedAdminRouteRouteChildren {
 
 const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
   {
+    AuthenticatedAdminGranskningarRoute: AuthenticatedAdminGranskningarRoute,
     AuthenticatedAdminIncidenterRoute: AuthenticatedAdminIncidenterRoute,
     AuthenticatedAdminIntegrationerRoute: AuthenticatedAdminIntegrationerRoute,
     AuthenticatedAdminKunderRoute: AuthenticatedAdminKunderRoute,

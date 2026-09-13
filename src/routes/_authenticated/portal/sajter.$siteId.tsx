@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { EventList, IncidentList, SiteSummary } from "@/components/app/SiteHealthPanels";
+import { SiteAuditOverview } from "@/components/app/SiteAuditOverview";
 import { EmptyState, ErrorState, LoadingRows } from "@/components/common/States";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { reportsQuery, siteEventsQuery, siteIncidentsQuery, siteQuery } from "@/lib/data";
@@ -34,6 +35,8 @@ function PortalSiteDetail() {
   return (
     <div className="space-y-8">
       <SiteSummary site={site.data} />
+
+      <SiteAuditOverview siteId={siteId} />
 
       <div className="grid gap-6 lg:grid-cols-2">
         <IncidentList incidents={incidents.data ?? []} />

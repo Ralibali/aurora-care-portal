@@ -11,6 +11,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
 
 const items: NavItem[] = [
   { to: "/admin", label: "Översikt" },
+  { to: "/admin/portfolj", label: "Projektportfölj" },
   { to: "/admin/sajter", label: "Sajter" },
   { to: "/admin/kunder", label: "Kunder" },
   { to: "/admin/incidenter", label: "Incidenter" },
@@ -24,6 +25,7 @@ const items: NavItem[] = [
 
 const titles: Record<string, string> = {
   "/admin": "Översikt",
+  "/admin/portfolj": "Projektportfölj",
   "/admin/sajter": "Sajter",
   "/admin/kunder": "Kunder",
   "/admin/incidenter": "Incidenter",

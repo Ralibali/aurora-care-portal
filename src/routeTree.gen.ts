@@ -25,6 +25,7 @@ import { Route as AuthenticatedAdminIntegrationerRouteImport } from './routes/_a
 import { Route as AuthenticatedAdminKunderRouteImport } from './routes/_authenticated/admin/kunder'
 import { Route as AuthenticatedAdminOnboardingRouteImport } from './routes/_authenticated/admin/onboarding'
 import { Route as AuthenticatedAdminPlanerRouteImport } from './routes/_authenticated/admin/planer'
+import { Route as AuthenticatedAdminPortfoljRouteImport } from './routes/_authenticated/admin/portfolj'
 import { Route as AuthenticatedAdminRapporterRouteImport } from './routes/_authenticated/admin/rapporter'
 import { Route as AuthenticatedAdminSupportRouteImport } from './routes/_authenticated/admin/support'
 import { Route as AuthenticatedPortalIndexRouteImport } from './routes/_authenticated/portal/index'
@@ -121,6 +122,12 @@ const AuthenticatedAdminPlanerRoute =
     path: '/planer',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAdminPortfoljRoute =
+  AuthenticatedAdminPortfoljRouteImport.update({
+    id: '/portfolj',
+    path: '/portfolj',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAdminRapporterRoute =
   AuthenticatedAdminRapporterRouteImport.update({
     id: '/rapporter',
@@ -191,6 +198,7 @@ export interface FileRoutesByFullPath {
   '/admin/kunder': typeof AuthenticatedAdminKunderRoute
   '/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
   '/admin/planer': typeof AuthenticatedAdminPlanerRoute
+  '/admin/portfolj': typeof AuthenticatedAdminPortfoljRoute
   '/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
   '/admin/support': typeof AuthenticatedAdminSupportRoute
   '/portal/rapporter': typeof AuthenticatedPortalRapporterRoute
@@ -215,6 +223,7 @@ export interface FileRoutesByTo {
   '/admin/kunder': typeof AuthenticatedAdminKunderRoute
   '/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
   '/admin/planer': typeof AuthenticatedAdminPlanerRoute
+  '/admin/portfolj': typeof AuthenticatedAdminPortfoljRoute
   '/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
   '/admin/support': typeof AuthenticatedAdminSupportRoute
   '/portal/rapporter': typeof AuthenticatedPortalRapporterRoute
@@ -243,6 +252,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/kunder': typeof AuthenticatedAdminKunderRoute
   '/_authenticated/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
   '/_authenticated/admin/planer': typeof AuthenticatedAdminPlanerRoute
+  '/_authenticated/admin/portfolj': typeof AuthenticatedAdminPortfoljRoute
   '/_authenticated/admin/rapporter': typeof AuthenticatedAdminRapporterRoute
   '/_authenticated/admin/support': typeof AuthenticatedAdminSupportRoute
   '/_authenticated/portal/rapporter': typeof AuthenticatedPortalRapporterRoute
@@ -271,6 +281,7 @@ export interface FileRouteTypes {
     | '/admin/kunder'
     | '/admin/onboarding'
     | '/admin/planer'
+    | '/admin/portfolj'
     | '/admin/rapporter'
     | '/admin/support'
     | '/portal/rapporter'
@@ -295,6 +306,7 @@ export interface FileRouteTypes {
     | '/admin/kunder'
     | '/admin/onboarding'
     | '/admin/planer'
+    | '/admin/portfolj'
     | '/admin/rapporter'
     | '/admin/support'
     | '/portal/rapporter'
@@ -322,6 +334,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/kunder'
     | '/_authenticated/admin/onboarding'
     | '/_authenticated/admin/planer'
+    | '/_authenticated/admin/portfolj'
     | '/_authenticated/admin/rapporter'
     | '/_authenticated/admin/support'
     | '/_authenticated/portal/rapporter'
@@ -458,6 +471,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminPlanerRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/portfolj': {
+      id: '/_authenticated/admin/portfolj'
+      path: '/portfolj'
+      fullPath: '/admin/portfolj'
+      preLoaderRoute: typeof AuthenticatedAdminPortfoljRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/admin/rapporter': {
       id: '/_authenticated/admin/rapporter'
       path: '/rapporter'
@@ -531,6 +551,7 @@ interface AuthenticatedAdminRouteRouteChildren {
   AuthenticatedAdminKunderRoute: typeof AuthenticatedAdminKunderRoute
   AuthenticatedAdminOnboardingRoute: typeof AuthenticatedAdminOnboardingRoute
   AuthenticatedAdminPlanerRoute: typeof AuthenticatedAdminPlanerRoute
+  AuthenticatedAdminPortfoljRoute: typeof AuthenticatedAdminPortfoljRoute
   AuthenticatedAdminRapporterRoute: typeof AuthenticatedAdminRapporterRoute
   AuthenticatedAdminSupportRoute: typeof AuthenticatedAdminSupportRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
@@ -546,6 +567,7 @@ const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren
     AuthenticatedAdminKunderRoute: AuthenticatedAdminKunderRoute,
     AuthenticatedAdminOnboardingRoute: AuthenticatedAdminOnboardingRoute,
     AuthenticatedAdminPlanerRoute: AuthenticatedAdminPlanerRoute,
+    AuthenticatedAdminPortfoljRoute: AuthenticatedAdminPortfoljRoute,
     AuthenticatedAdminRapporterRoute: AuthenticatedAdminRapporterRoute,
     AuthenticatedAdminSupportRoute: AuthenticatedAdminSupportRoute,
     AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,

@@ -130,6 +130,127 @@ export type Database = {
           },
         ]
       }
+      consent_assets: {
+        Row: {
+          asset_type: string
+          category: string
+          confidence: number
+          created_at: string
+          detected_before_consent: boolean
+          evidence: Json
+          id: string
+          name: string
+          organization_id: string
+          provider: string | null
+          scan_id: string
+          site_id: string
+          source_url: string | null
+        }
+        Insert: {
+          asset_type: string
+          category?: string
+          confidence?: number
+          created_at?: string
+          detected_before_consent?: boolean
+          evidence?: Json
+          id?: string
+          name: string
+          organization_id: string
+          provider?: string | null
+          scan_id: string
+          site_id: string
+          source_url?: string | null
+        }
+        Update: {
+          asset_type?: string
+          category?: string
+          confidence?: number
+          created_at?: string
+          detected_before_consent?: boolean
+          evidence?: Json
+          id?: string
+          name?: string
+          organization_id?: string
+          provider?: string | null
+          scan_id?: string
+          site_id?: string
+          source_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consent_assets_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "consent_assets_scan_id_fkey"
+            columns: ["scan_id"]
+            isOneToOne: false
+            referencedRelation: "site_scans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "consent_assets_site_id_fkey"
+            columns: ["site_id"]
+            isOneToOne: false
+            referencedRelation: "sites"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      consent_versions: {
+        Row: {
+          change_note: string | null
+          configuration: Json
+          id: string
+          organization_id: string
+          provider: string | null
+          published_at: string
+          published_by: string | null
+          site_id: string
+          version: number
+        }
+        Insert: {
+          change_note?: string | null
+          configuration?: Json
+          id?: string
+          organization_id: string
+          provider?: string | null
+          published_at?: string
+          published_by?: string | null
+          site_id: string
+          version: number
+        }
+        Update: {
+          change_note?: string | null
+          configuration?: Json
+          id?: string
+          organization_id?: string
+          provider?: string | null
+          published_at?: string
+          published_by?: string | null
+          site_id?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consent_versions_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "consent_versions_site_id_fkey"
+            columns: ["site_id"]
+            isOneToOne: false
+            referencedRelation: "sites"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       customers: {
         Row: {
           contact_email: string | null
@@ -566,6 +687,235 @@ export type Database = {
           },
         ]
       }
+      site_audit_configs: {
+        Row: {
+          accessibility_enabled: boolean
+          block_before_consent: boolean
+          consent_enabled: boolean
+          consent_mode_v2: boolean
+          consent_provider: string | null
+          created_at: string
+          id: string
+          last_scan_at: string | null
+          next_scan_at: string | null
+          organization_id: string
+          policy_url: string | null
+          scan_frequency: string
+          site_id: string
+          updated_at: string
+        }
+        Insert: {
+          accessibility_enabled?: boolean
+          block_before_consent?: boolean
+          consent_enabled?: boolean
+          consent_mode_v2?: boolean
+          consent_provider?: string | null
+          created_at?: string
+          id?: string
+          last_scan_at?: string | null
+          next_scan_at?: string | null
+          organization_id: string
+          policy_url?: string | null
+          scan_frequency?: string
+          site_id: string
+          updated_at?: string
+        }
+        Update: {
+          accessibility_enabled?: boolean
+          block_before_consent?: boolean
+          consent_enabled?: boolean
+          consent_mode_v2?: boolean
+          consent_provider?: string | null
+          created_at?: string
+          id?: string
+          last_scan_at?: string | null
+          next_scan_at?: string | null
+          organization_id?: string
+          policy_url?: string | null
+          scan_frequency?: string
+          site_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "site_audit_configs_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "site_audit_configs_site_id_fkey"
+            columns: ["site_id"]
+            isOneToOne: true
+            referencedRelation: "sites"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      site_findings: {
+        Row: {
+          created_at: string
+          description: string
+          evidence: Json
+          first_seen_at: string
+          fix_hint: string | null
+          help_url: string | null
+          id: string
+          kind: Database["public"]["Enums"]["care_scan_kind"]
+          last_seen_at: string
+          manual_review_required: boolean
+          organization_id: string
+          page_url: string
+          resolved_at: string | null
+          rule_id: string
+          scan_id: string
+          selector: string | null
+          severity: Database["public"]["Enums"]["care_finding_severity"]
+          site_id: string
+          status: Database["public"]["Enums"]["care_finding_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          evidence?: Json
+          first_seen_at?: string
+          fix_hint?: string | null
+          help_url?: string | null
+          id?: string
+          kind: Database["public"]["Enums"]["care_scan_kind"]
+          last_seen_at?: string
+          manual_review_required?: boolean
+          organization_id: string
+          page_url: string
+          resolved_at?: string | null
+          rule_id: string
+          scan_id: string
+          selector?: string | null
+          severity?: Database["public"]["Enums"]["care_finding_severity"]
+          site_id: string
+          status?: Database["public"]["Enums"]["care_finding_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          evidence?: Json
+          first_seen_at?: string
+          fix_hint?: string | null
+          help_url?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["care_scan_kind"]
+          last_seen_at?: string
+          manual_review_required?: boolean
+          organization_id?: string
+          page_url?: string
+          resolved_at?: string | null
+          rule_id?: string
+          scan_id?: string
+          selector?: string | null
+          severity?: Database["public"]["Enums"]["care_finding_severity"]
+          site_id?: string
+          status?: Database["public"]["Enums"]["care_finding_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "site_findings_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "site_findings_scan_id_fkey"
+            columns: ["scan_id"]
+            isOneToOne: false
+            referencedRelation: "site_scans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "site_findings_site_id_fkey"
+            columns: ["site_id"]
+            isOneToOne: false
+            referencedRelation: "sites"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      site_scans: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          engine: string
+          engine_version: string | null
+          error_message: string | null
+          id: string
+          kind: Database["public"]["Enums"]["care_scan_kind"]
+          organization_id: string
+          page_url: string
+          pages_scanned: number
+          requested_by: string | null
+          site_id: string
+          started_at: string | null
+          status: Database["public"]["Enums"]["care_scan_status"]
+          summary: Json
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          engine: string
+          engine_version?: string | null
+          error_message?: string | null
+          id?: string
+          kind: Database["public"]["Enums"]["care_scan_kind"]
+          organization_id: string
+          page_url: string
+          pages_scanned?: number
+          requested_by?: string | null
+          site_id: string
+          started_at?: string | null
+          status?: Database["public"]["Enums"]["care_scan_status"]
+          summary?: Json
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          engine?: string
+          engine_version?: string | null
+          error_message?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["care_scan_kind"]
+          organization_id?: string
+          page_url?: string
+          pages_scanned?: number
+          requested_by?: string | null
+          site_id?: string
+          started_at?: string | null
+          status?: Database["public"]["Enums"]["care_scan_status"]
+          summary?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "site_scans_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "site_scans_site_id_fkey"
+            columns: ["site_id"]
+            isOneToOne: false
+            referencedRelation: "sites"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       sites: {
         Row: {
           created_at: string
@@ -763,6 +1113,15 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "client"
+      care_finding_severity:
+        | "info"
+        | "minor"
+        | "moderate"
+        | "serious"
+        | "critical"
+      care_finding_status: "open" | "accepted" | "resolved" | "ignored"
+      care_scan_kind: "accessibility" | "consent"
+      care_scan_status: "queued" | "running" | "completed" | "failed"
       connection_mode: "demo" | "live"
       health_status: "healthy" | "attention" | "critical" | "unknown"
       incident_severity: "low" | "medium" | "high" | "critical"
@@ -905,6 +1264,16 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "client"],
+      care_finding_severity: [
+        "info",
+        "minor",
+        "moderate",
+        "serious",
+        "critical",
+      ],
+      care_finding_status: ["open", "accepted", "resolved", "ignored"],
+      care_scan_kind: ["accessibility", "consent"],
+      care_scan_status: ["queued", "running", "completed", "failed"],
       connection_mode: ["demo", "live"],
       health_status: ["healthy", "attention", "critical", "unknown"],
       incident_severity: ["low", "medium", "high", "critical"],

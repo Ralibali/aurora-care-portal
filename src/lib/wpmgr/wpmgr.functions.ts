@@ -53,9 +53,7 @@ export const runWpmgrSync = createServerFn({ method: "POST" })
     const adapter = getWpmgrAdapter();
     const ranAt = new Date().toISOString();
 
-    const { data: sites } = await ctx.supabase
-      .from("sites")
-      .select("id, wpmgr_site_id, domain");
+    const { data: sites } = await ctx.supabase.from("sites").select("id, wpmgr_site_id, domain");
     const list = sites ?? [];
 
     if (!isLiveConfigured()) {

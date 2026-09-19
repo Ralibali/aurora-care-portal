@@ -202,8 +202,8 @@ function Onboarding() {
                 />
               </div>
               <p className="text-xs text-muted-foreground">
-                Identifierarna används endast för läsande synk. Aurora Care v0.1 utför inga
-                skarpa åtgärder mot WordPress.
+                Identifierarna används endast för läsande synk. Aurora Care v0.1 utför inga skarpa
+                åtgärder mot WordPress.
               </p>
             </>
           ) : null}
@@ -247,11 +247,7 @@ function Onboarding() {
                 Nästa
               </Button>
             ) : (
-              <Button
-                type="button"
-                disabled={mutation.isPending}
-                onClick={() => mutation.mutate()}
-              >
+              <Button type="button" disabled={mutation.isPending} onClick={() => mutation.mutate()}>
                 {mutation.isPending ? "Sparar…" : "Skapa sajt"}
               </Button>
             )}

@@ -23,7 +23,9 @@ function AdminSupport() {
   if (error) return <ErrorState message={(error as Error).message} />;
   const rows = data ?? [];
   if (rows.length === 0) {
-    return <EmptyState title="Inga supportärenden" description="Ärenden från kundportalen hamnar här." />;
+    return (
+      <EmptyState title="Inga supportärenden" description="Ärenden från kundportalen hamnar här." />
+    );
   }
   return (
     <ul className="divide-y divide-border/70 rounded-xl border border-border/70 bg-card px-4">

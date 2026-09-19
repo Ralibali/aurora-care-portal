@@ -69,9 +69,7 @@ function ReportView() {
       <header className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-6">
         <div>
           <p className="text-sm text-muted-foreground">Aurora Care · Aurora Media AB</p>
-          <h1 className="text-2xl font-semibold">
-            Månadsrapport {formatMonth(data.period_month)}
-          </h1>
+          <h1 className="text-2xl font-semibold">Månadsrapport {formatMonth(data.period_month)}</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             {data.sites?.name ?? "–"} · {data.sites?.domain ?? ""} · Plan{" "}
             {data.sites?.plans?.name ?? "–"} · {statusLabels[data.status] ?? data.status}

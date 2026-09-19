@@ -89,8 +89,8 @@ function Pricing() {
         <div className="mt-8 rounded-xl border border-border/70 bg-surface p-6">
           <h3 className="font-semibold">Betalning</h3>
           <p className="mt-2 text-sm text-muted-foreground">
-            Fakturering sker månadsvis. Kortbetalning är förberedd men aktiveras först när
-            avtalet är på plats – vi tar aldrig betalt innan du sagt ja.
+            Fakturering sker månadsvis. Kortbetalning är förberedd men aktiveras först när avtalet
+            är på plats – vi tar aldrig betalt innan du sagt ja.
           </p>
           <Button className="mt-4" asChild>
             <Link to="/kontakt">Begär offert</Link>

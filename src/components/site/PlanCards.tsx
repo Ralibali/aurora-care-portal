@@ -52,7 +52,9 @@ export function PlanCards() {
                 </span>
                 <span className="text-sm text-muted-foreground"> /månad per sajt</span>
               </p>
-              <p className="text-xs text-muted-foreground">Exklusive moms. Månadsvis, ingen bindningstid.</p>
+              <p className="text-xs text-muted-foreground">
+                Exklusive moms. Månadsvis, ingen bindningstid.
+              </p>
             </CardHeader>
             <CardContent className="flex flex-1 flex-col">
               <ul className="flex-1 space-y-2.5 text-sm">

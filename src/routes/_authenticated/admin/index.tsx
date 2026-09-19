@@ -50,7 +50,11 @@ function AdminOverview() {
   return (
     <div className="space-y-8">
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Månadsintäkt (MRR)" value={formatSek(mrr)} hint={`${activeBilling.length} aktiva abonnemang`} />
+        <StatCard
+          label="Månadsintäkt (MRR)"
+          value={formatSek(mrr)}
+          hint={`${activeBilling.length} aktiva abonnemang`}
+        />
         <StatCard label="Sajter i drift" value={siteList.length} hint={`${healthy} friska`} />
         <StatCard
           label="Behöver åtgärd"

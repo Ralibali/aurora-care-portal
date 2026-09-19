@@ -29,7 +29,12 @@ function AdminIncidents() {
   if (error) return <ErrorState message={(error as Error).message} />;
   const rows = data ?? [];
   if (rows.length === 0) {
-    return <EmptyState title="Inga incidenter" description="Inget driftavbrott eller säkerhetsärende är registrerat." />;
+    return (
+      <EmptyState
+        title="Inga incidenter"
+        description="Inget driftavbrott eller säkerhetsärende är registrerat."
+      />
+    );
   }
   return (
     <ul className="divide-y divide-border/70 rounded-xl border border-border/70 bg-card px-4">
@@ -45,7 +50,9 @@ function AdminIncidents() {
             <Badge variant={incident.status === "resolved" ? "secondary" : "destructive"}>
               {statusLabels[incident.status] ?? incident.status}
             </Badge>
-            <Badge variant="outline">{severityLabels[incident.severity] ?? incident.severity}</Badge>
+            <Badge variant="outline">
+              {severityLabels[incident.severity] ?? incident.severity}
+            </Badge>
           </div>
         </li>
       ))}

@@ -60,13 +60,27 @@ function AdminSites() {
           <table className="w-full min-w-[48rem] text-sm">
             <thead>
               <tr className="border-b border-border bg-surface/70 text-left">
-                <th scope="col" className="p-3 font-medium">Sajt</th>
-                <th scope="col" className="p-3 font-medium">Kund</th>
-                <th scope="col" className="p-3 font-medium">Plan</th>
-                <th scope="col" className="p-3 font-medium">Status</th>
-                <th scope="col" className="p-3 font-medium">Uppetid</th>
-                <th scope="col" className="p-3 font-medium">Backup</th>
-                <th scope="col" className="p-3 font-medium">Uppdateringar</th>
+                <th scope="col" className="p-3 font-medium">
+                  Sajt
+                </th>
+                <th scope="col" className="p-3 font-medium">
+                  Kund
+                </th>
+                <th scope="col" className="p-3 font-medium">
+                  Plan
+                </th>
+                <th scope="col" className="p-3 font-medium">
+                  Status
+                </th>
+                <th scope="col" className="p-3 font-medium">
+                  Uppetid
+                </th>
+                <th scope="col" className="p-3 font-medium">
+                  Backup
+                </th>
+                <th scope="col" className="p-3 font-medium">
+                  Uppdateringar
+                </th>
               </tr>
             </thead>
             <tbody>

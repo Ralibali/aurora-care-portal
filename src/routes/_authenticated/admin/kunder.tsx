@@ -34,11 +34,21 @@ function AdminCustomers() {
       <table className="w-full min-w-[44rem] text-sm">
         <thead>
           <tr className="border-b border-border bg-surface/70 text-left">
-            <th scope="col" className="p-3 font-medium">Kund</th>
-            <th scope="col" className="p-3 font-medium">Kontakt</th>
-            <th scope="col" className="p-3 font-medium">Sajter</th>
-            <th scope="col" className="p-3 font-medium">MRR</th>
-            <th scope="col" className="p-3 font-medium">Förnyelse</th>
+            <th scope="col" className="p-3 font-medium">
+              Kund
+            </th>
+            <th scope="col" className="p-3 font-medium">
+              Kontakt
+            </th>
+            <th scope="col" className="p-3 font-medium">
+              Sajter
+            </th>
+            <th scope="col" className="p-3 font-medium">
+              MRR
+            </th>
+            <th scope="col" className="p-3 font-medium">
+              Förnyelse
+            </th>
           </tr>
         </thead>
         <tbody>

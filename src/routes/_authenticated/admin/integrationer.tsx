@@ -53,8 +53,8 @@ function Integrations() {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-sm text-muted-foreground">
-            WPMgr körs som en separat självhostad tjänst. Aurora Care pratar med den enbart via
-            en läsande adapter på servern. Nycklarna <code>WPMGR_BASE_URL</code> och{" "}
+            WPMgr körs som en separat självhostad tjänst. Aurora Care pratar med den enbart via en
+            läsande adapter på servern. Nycklarna <code>WPMGR_BASE_URL</code> och{" "}
             <code>WPMGR_API_TOKEN</code> lagras som serverhemligheter och exponeras aldrig i
             webbläsaren.
           </p>
@@ -95,8 +95,8 @@ function Integrations() {
               className="rounded-lg border border-border/70 bg-surface/60 p-4 text-sm"
             >
               <p className="font-medium">
-                Synk ({syncResult.mode}) · {syncResult.sitesUpdated} av{" "}
-                {syncResult.sitesConsidered} sajter uppdaterade
+                Synk ({syncResult.mode}) · {syncResult.sitesUpdated} av {syncResult.sitesConsidered}{" "}
+                sajter uppdaterade
               </p>
               <p className="mt-1 text-muted-foreground">{syncResult.message}</p>
             </div>

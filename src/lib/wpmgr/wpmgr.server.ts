@@ -31,10 +31,7 @@ export const demoAdapter: WpmgrAdapter = {
   mode: "demo",
   async testConnection(): Promise<WpmgrConnectionResult> {
     const { baseUrl, token } = readConfig();
-    const missing = [
-      ...(baseUrl ? [] : ["WPMGR_BASE_URL"]),
-      ...(token ? [] : ["WPMGR_API_TOKEN"]),
-    ];
+    const missing = [...(baseUrl ? [] : ["WPMGR_BASE_URL"]), ...(token ? [] : ["WPMGR_API_TOKEN"])];
     return {
       ok: false,
       mode: "demo",
@@ -107,8 +104,7 @@ export const httpAdapter: WpmgrAdapter = {
       };
     }
   },
-  getSiteHealth: (siteRef) =>
-    get<WpmgrSiteHealth | null>(WPMGR_ENDPOINT_MAP.siteHealth(siteRef)),
+  getSiteHealth: (siteRef) => get<WpmgrSiteHealth | null>(WPMGR_ENDPOINT_MAP.siteHealth(siteRef)),
   getUptime: (siteRef) => get<WpmgrUptimePoint[]>(WPMGR_ENDPOINT_MAP.uptime(siteRef)),
   getBackups: (siteRef) => get<WpmgrBackup[]>(WPMGR_ENDPOINT_MAP.backups(siteRef)),
   getUpdates: (siteRef) => get<WpmgrUpdate[]>(WPMGR_ENDPOINT_MAP.updates(siteRef)),

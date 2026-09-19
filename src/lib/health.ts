@@ -47,7 +47,6 @@ export function deriveHealth(input: SiteHealthInput): HealthStatus {
   if (unmeasured) return "unknown";
 
   const critical =
-
     input.security_findings >= 3 ||
     backupAgeH > interval * 2 ||
     (sslDays != null && sslDays <= 5) ||

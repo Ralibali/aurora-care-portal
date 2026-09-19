@@ -143,7 +143,9 @@ export function IncidentList({ incidents }: { incidents: Incident[] }) {
             <Badge variant={incident.status === "resolved" ? "secondary" : "destructive"}>
               {incident.status === "resolved" ? "Löst" : "Öppen"}
             </Badge>
-            <Badge variant="outline">{severityLabels[incident.severity] ?? incident.severity}</Badge>
+            <Badge variant="outline">
+              {severityLabels[incident.severity] ?? incident.severity}
+            </Badge>
           </div>
         </li>
       ))}

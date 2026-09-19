@@ -54,13 +54,17 @@ export function siteQuery(siteId: string) {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("sites")
-        .select("*, customers(id, name, contact_name, contact_email), plans(id, name, slug, price_sek_monthly)")
+        .select(
+          "*, customers(id, name, contact_name, contact_email), plans(id, name, slug, price_sek_monthly)",
+        )
         .eq("id", siteId)
         .maybeSingle();
       if (error) throw new Error(error.message);
-      return data as (SiteWithRelations & {
-        customers: (Pick<Customer, "id" | "name" | "contact_name" | "contact_email">) | null;
-      }) | null;
+      return data as
+        | (SiteWithRelations & {
+            customers: Pick<Customer, "id" | "name" | "contact_name" | "contact_email"> | null;
+          })
+        | null;
     },
   });
 }
@@ -134,7 +138,8 @@ export function reportQuery(reportId: string) {
       if (error) throw new Error(error.message);
       return data as
         | (Report & {
-            sites: (Pick<Site, "id" | "name" | "domain"> & { plans: { name: string } | null }) | null;
+            sites:
+              (Pick<Site, "id" | "name" | "domain"> & { plans: { name: string } | null }) | null;
             organizations: { name: string } | null;
           })
         | null;

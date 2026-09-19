@@ -38,10 +38,18 @@ function PortalReports() {
         <caption className="sr-only">Dina månadsrapporter</caption>
         <thead>
           <tr className="border-b border-border bg-surface/70 text-left">
-            <th scope="col" className="p-3 font-medium">Period</th>
-            <th scope="col" className="p-3 font-medium">Sajt</th>
-            <th scope="col" className="p-3 font-medium">Uppetid</th>
-            <th scope="col" className="p-3 font-medium">Status</th>
+            <th scope="col" className="p-3 font-medium">
+              Period
+            </th>
+            <th scope="col" className="p-3 font-medium">
+              Sajt
+            </th>
+            <th scope="col" className="p-3 font-medium">
+              Uppetid
+            </th>
+            <th scope="col" className="p-3 font-medium">
+              Status
+            </th>
           </tr>
         </thead>
         <tbody>

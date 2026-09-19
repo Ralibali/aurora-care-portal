@@ -1,6 +1,12 @@
 import { cn } from "@/lib/utils";
 
-export function Logo({ className, tone = "default" }: { className?: string; tone?: "default" | "onDark" }) {
+export function Logo({
+  className,
+  tone = "default",
+}: {
+  className?: string;
+  tone?: "default" | "onDark";
+}) {
   return (
     <span className={cn("inline-flex items-center gap-2", className)}>
       <span

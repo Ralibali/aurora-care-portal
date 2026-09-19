@@ -1,8 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 
 export type CheckoutResult =
-  | { status: "unconfigured"; message: string }
-  | { status: "redirect"; url: string };
+  { status: "unconfigured"; message: string } | { status: "redirect"; url: string };
 
 /**
  * Serverabstraktion för betalning. Stripe är förberett men inte aktiverat.

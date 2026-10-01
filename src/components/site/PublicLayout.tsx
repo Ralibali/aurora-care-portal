@@ -142,8 +142,8 @@ export function PublicLayout({ children }: { children: ReactNode }) {
             <address className="mt-3 space-y-1 text-sm not-italic text-muted-foreground">
               <p>Sverige</p>
               <p>
-                <a href="mailto:hej@auroramedia.se" className="hover:text-foreground">
-                  hej@auroramedia.se
+                <a href="mailto:info@auroramedia.se" className="hover:text-foreground">
+                  info@auroramedia.se
                 </a>
               </p>
             </address>

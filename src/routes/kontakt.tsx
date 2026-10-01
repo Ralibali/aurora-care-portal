@@ -142,8 +142,8 @@ function Contact() {
           <div className="rounded-xl border border-border/70 bg-card p-6">
             <h2 className="text-base font-semibold">Aurora Media AB</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              <a className="hover:text-foreground" href="mailto:hej@auroramedia.se">
-                hej@auroramedia.se
+              <a className="hover:text-foreground" href="mailto:info@auroramedia.se">
+                info@auroramedia.se
               </a>
             </p>
             <p className="mt-1 text-sm text-muted-foreground">Svar inom en arbetsdag.</p>

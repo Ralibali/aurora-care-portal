@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
           provider: {
             "@type": "Organization",
             name: "Aurora Media AB",
-            email: "hej@auroramedia.se",
+            email: "info@auroramedia.se",
           },
           offers: [
             { "@type": "Offer", name: "Bas", price: "499", priceCurrency: "SEK" },
